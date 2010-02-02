@@ -133,7 +133,6 @@ public class WalletTest {
 			
 			Coin c = new Coin(name, value);
 			
-			System.out.println("Coin: " + c.value());
 			wallet.add(c);
 			wallet.printContent();
 		}

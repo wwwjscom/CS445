@@ -1,4 +1,6 @@
-all:
+all: build run
+
+build:
 	javac -d bin/ src/hw1/*.java
 
 run:

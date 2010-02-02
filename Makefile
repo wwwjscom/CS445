@@ -1,6 +1,7 @@
 all: build run
 
 build:
+	mkdir bin
 	javac -d bin/ src/hw1/*.java
 
 run:

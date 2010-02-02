@@ -11,47 +11,26 @@ public class CoinTest {
 	
 	@Before
 	public void setUp() {
-		penny 	= new Coin(1);
-		nickel 	= new Coin(5);
-		dime 	= new Coin(10);
-		quarter = new Coin(25);
-		euro 	= new Coin(100);
+		penny 	= new Coin("penny", 1);
+		nickel 	= new Coin("nickel", 5);
+		dime 	= new Coin("dime", 10);
+		quarter = new Coin("quarter", 25);
+		euro 	= new Coin("euro", 100);
 	}
 	
-	@Test
-	public void testPennyByNameValue() {
-		assertEquals(1, new Coin("penny").value());
-	}
-
-	@Test
 	public void testPennyValue() {
 		assertEquals(1, penny.value());
-	}
-	
-	@Test
-	public void testNickelByNameValue() {
-		assertEquals(5, new Coin("nickel").value());
 	}
 	
 	@Test
 	public void testNickelValue() {
 		assertEquals(nickel.value(), 5);
 	}
-	
-	@Test
-	public void testDimeByNameValue() {
-		assertEquals(10, new Coin("dime").value());
-	}
 
 	
 	@Test
 	public void testDimeValue() {
 		assertEquals(dime.value(), 10);
-	}
-
-	@Test
-	public void testQuarterByNameValue() {
-		assertEquals(25, new Coin("quarter").value());
 	}
 	
 	@Test
@@ -60,59 +39,41 @@ public class CoinTest {
 	}
 	
 	@Test
-	public void testEuroByNameValue() {
-		assertEquals(100, new Coin("euro").value());
-	}
-	
-	@Test
 	public void testEuroValue() {
 		assertEquals(euro.value(), 100);
 	}
 	
 	@Test
-	public void testPennyType() {
-		assertEquals("penny", penny.type());
+	public void testPennyName() {
+		assertEquals("penny", penny.name());
 	}
 	
 	@Test
-	public void testNickelType() {
-		assertEquals("nickel", nickel.type());
+	public void testNickelName() {
+		assertEquals("nickel", nickel.name());
 	}
 	
 	@Test
-	public void testDimeType() {
-		assertEquals("dime", dime.type());
+	public void testDimeName() {
+		assertEquals("dime", dime.name());
 	}
 	
 	@Test
-	public void testQuarterType() {
-		assertEquals("quarter", quarter.type());
+	public void testQuarterNamee() {
+		assertEquals("quarter", quarter.name());
 	}
 	
 	@Test
-	public void testEuroType() {
-		assertEquals("euro", euro.type());
+	public void testEuroName() {
+		assertEquals("euro", euro.name());
 	}
 	
-	@Test
-	public void testUSCurrencyByName() {
-		assertEquals("cent", new Coin("penny").currency());
-		assertEquals("cents", new Coin("nickel").currency());
-		assertEquals("cents", new Coin("dime").currency());
-		assertEquals("cents", new Coin("quarter").currency());
-	}
-
 	@Test
 	public void testUSCurrency() {
 		assertEquals("cent", penny.currency());
 		assertEquals("cents", nickel.currency());
 		assertEquals("cents", dime.currency());
 		assertEquals("cents", quarter.currency());
-	}
-	
-	@Test
-	public void testEuroCurrencyByName() {
-		assertEquals("eurocents", new Coin("euro").currency());
 	}
 
 	@Test

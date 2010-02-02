@@ -10,60 +10,51 @@ import org.junit.Test;
 
 public class WalletTest {
 
+	Coin penny, nickel, dime, quarter, euro;
 	Wallet wallet;
 	
 	@Before
 	public void setUp() {
 		wallet = new Wallet();
-	}
-
-	@Test
-	public void testWalletIsEmptyOnCreation() {
-		assertEquals(0, wallet.getSize("penny"));
-		assertEquals(0, wallet.getSize("nickel"));
-		assertEquals(0, wallet.getSize("dime"));
-		assertEquals(0, wallet.getSize("quarter"));
-		assertEquals(0, wallet.getSize("euro"));
+		penny = new Coin("penny", 1);
+		nickel = new Coin("nickel", 5);
+		dime = new Coin("dime", 10);
+		quarter = new Coin("quarter", 25);
+		euro = new Coin("euro", 100);
 	}
 	
 	@Test
 	public void testAddPenny() {
-		Coin penny = new Coin(1);
 		wallet.add(penny);
 		assertEquals(1, wallet.getSize("penny"));
 	}
 
 	@Test
 	public void testAddNickel() {
-		Coin nickel = new Coin(5);
 		wallet.add(nickel);
 		assertEquals(1, wallet.getSize("nickel"));
 	}
 
 	@Test
 	public void testAddDime() {
-		Coin dime = new Coin(10);
 		wallet.add(dime);
 		assertEquals(1, wallet.getSize("dime"));
 	}
 
 	@Test
 	public void testAddQuarter() {
-		Coin quarter = new Coin(25);
 		wallet.add(quarter);
 		assertEquals(1, wallet.getSize("quarter"));
 	}
 
 	@Test
 	public void testAddEuro() {
-		Coin euro = new Coin(100);
 		wallet.add(euro);
 		assertEquals(1, wallet.getSize("euro"));
 	}
 
 	@Test
 	public void testSetUpContentsForPenny() {
-		Coin penny = new Coin(1);
 		wallet.add(penny);
 		String s = wallet.setupContent(penny);
 		assertEquals("penny (1 cent): 1\n", s);
@@ -72,7 +63,6 @@ public class WalletTest {
 
 	@Test
 	public void testSetUpContentsForNickel() {
-		Coin nickel = new Coin(5);
 		wallet.add(nickel);
 		String s = wallet.setupContent(nickel);
 		assertEquals("nickel (5 cents): 1\n", s);
@@ -80,7 +70,6 @@ public class WalletTest {
 
 	@Test
 	public void testSetUpContentsForDime() {
-		Coin dime = new Coin(10);
 		wallet.add(dime);
 		String s = wallet.setupContent(dime);
 		assertEquals("dime (10 cents): 1\n", s);
@@ -88,7 +77,6 @@ public class WalletTest {
 
 	@Test
 	public void testSetUpContentsForQuarter() {
-		Coin quarter = new Coin(25);
 		wallet.add(quarter);
 		String s = wallet.setupContent(quarter);
 		assertEquals("quarter (25 cents): 1\n", s);
@@ -96,7 +84,6 @@ public class WalletTest {
 
 	@Test
 	public void testSetUpContentsForEuro() {
-		Coin euro = new Coin(100);
 		wallet.add(euro);
 		String s = wallet.setupContent(euro);
 		assertEquals("euro (100 eurocents): 1\n", s);
@@ -111,28 +98,30 @@ public class WalletTest {
 		s += "quarter (25 cents): 1\n";
 		s += "euro (100 eurocents): 1\n";
 
-		wallet.add(new Coin(1));
-		wallet.add(new Coin(5));
-		wallet.add(new Coin(10));
-		wallet.add(new Coin(25));
-		wallet.add(new Coin(100));
+		wallet.add(penny);
+		wallet.add(nickel);
+		wallet.add(dime);
+		wallet.add(quarter);
+		wallet.add(euro);
 		
 		assertEquals(s, wallet.setupPrintContents());
 	}
 	
 	public static void main(String[] args) throws IOException {
 		Wallet wallet = new Wallet();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		while(true) {
-			System.out.print("Enter the name of a coin");
+			System.out.print("Enter the name of a coin: ");
+			String name = br.readLine();
 			
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			String coin = br.readLine();
-			
-			if(coin.equalsIgnoreCase(""))
+			if(name.equalsIgnoreCase(""))
 				System.exit(0);
+
+			System.out.print("Enter the value of the coin: ");
+			int value = Integer.parseInt(br.readLine());
 			
-			Coin c = new Coin(coin);
+			Coin c = new Coin(name, value);
 			
 			System.out.println("Coin: " + c.value());
 			wallet.add(c);

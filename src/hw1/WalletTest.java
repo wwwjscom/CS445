@@ -107,6 +107,16 @@ public class WalletTest {
 		assertEquals(s, wallet.setupPrintContents());
 	}
 	
+	@Test
+	public void testTwoEqualCoins() {
+		assertTrue(wallet.equals(penny, penny));
+	}
+	
+	@Test
+	public void testTwoUnequalCoins() {
+		assertFalse(wallet.equals(penny, dime));
+	}
+	
 	public static void main(String[] args) throws IOException {
 		Wallet wallet = new Wallet();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

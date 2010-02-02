@@ -47,4 +47,8 @@ public class Wallet {
 	public int getSize(String coin_type) {
 		return contents.get(coin_type);
 	}
+	
+	public boolean equals(Coin a, Coin b) {
+		return ((a.value() == b.value()) && (a.name() == b.name()));
+	}
 }

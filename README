@@ -1,5 +1,0 @@
-First, be sure your path is setup correctly, to include java and unit testing (org.junit.*), et al.  If it is not setup correctly, the code will not compile.
-
-To compile, run make.
-
-To run, run make run
